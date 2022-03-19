@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollisionHeal : MonoBehaviour
+{
+    public int collisionHeal = 20;
+    public string collisionTag;
+    public Animator animator;
+
+
+    private void OnCollisionEnter2D(Collision2D coll) 
+    {
+        if (coll.gameObject.tag == collisionTag)
+        {
+            Health health = coll.gameObject.GetComponent<Health>();
+            health.SetHealth(collisionHeal);
+            Destroy(gameObject);
+        }
+    }
+    
+}
